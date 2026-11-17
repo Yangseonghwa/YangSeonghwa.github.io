@@ -2,6 +2,20 @@
   {
     "type": "발표 자료",
     "level": "중학교 1학년",
+    "title": "AI 바이브 코딩 구조와 인증 마스터 클래스",
+    "desc": "웹 LLM vs 로컬 VS Code Copilot 파일 이동 경로와 GitHub 웹 로그인·2FA·gh CLI 디바이스 인증(Device Flow) 원리",
+    "url": "programming/github-concept-mastery/index.html"
+  },
+  {
+    "type": "학생 활동지",
+    "level": "중학교 1학년",
+    "title": "AI 바이브 코딩 구조와 인증 마스터 활동지",
+    "desc": "파일 이동 경로 비교, GitHub 인증 3총사 정리, Device Flow 순서 맞추기 및 개념 점검 퀴즈",
+    "url": "programming/github-concept-mastery/worksheet.html"
+  },
+  {
+    "type": "발표 자료",
+    "level": "중학교 1학년",
     "title": "AI 바이브 코딩과 GitHub CLI 배포",
     "desc": "내가 즐거워하는 분야와 미래 가치, VS Code와 GitHub CLI를 이용한 배포 수업 슬라이드",
     "url": "programming/ai-vibe-coding-deploy/index.html"

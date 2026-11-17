@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>학생 활동지: AI 바이브 코딩 아키텍처 &amp; GitHub 인증 마스터 | Beflower</title>
+<meta name="description" content="웹 LLM vs 로컬 VS Code 파일 이동 경로 비교, GitHub 웹 로그인·2FA·gh CLI 디바이스 인증(Device Flow) 흐름을 직접 정리하고 점검하는 중학교 프로그램 수업 활동지">
+<link rel="stylesheet" href="../../assets/css/beflower.css">
+<script>
+(function(){
+  try {
+    var saved = localStorage.getItem('bf-theme');
+    var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var theme = saved || (sysDark ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-bf-theme', theme);
+    if (theme === 'dark') document.documentElement.classList.add('bf-theme-dark');
+    else document.documentElement.classList.add('bf-theme-light');
+  } catch(e) {}
+})();
+</script>
+<style>
+:root{
+  --ink:var(--bf-ink);
+  --sub:var(--bf-sub);
+  --main:var(--bf-main);
+  --pink:var(--bf-pink);
+  --line:var(--bf-line);
+  --card:var(--bf-surface);
+  --soft:var(--bf-surface-soft);
+}
+*{box-sizing:border-box}
+body{
+  font-family:var(--bf-font-sans);
+  background:var(--bf-bg);
+  color:var(--ink);
+  margin:0;
+  line-height:1.65;
+}
+.worksheet-wrap{
+  max-width:940px;
+  margin:28px auto 56px;
+  padding:0 16px;
+}
+.sheet{
+  background:var(--card);
+  border:1.5px solid var(--line);
+  border-radius:24px;
+  padding:clamp(22px,4.5vw,48px);
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.sheet-header{
+  text-align:center;
+  padding-bottom:18px;
+  border-bottom:2px solid var(--main);
+  margin-bottom:20px;
+}
+.badge-row{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:8px;
+}
+.badge{
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:999px;
+  background:var(--bf-main-soft);
+  color:var(--main);
+  font-weight:700;
+  font-size:13px;
+}
+h1{font-size:clamp(22px,3.8vw,34px);margin:6px 0;color:var(--main);letter-spacing:-.5px}
+h2{
+  font-size:clamp(18px,2.4vw,23px);
+  margin-top:30px;
+  margin-bottom:10px;
+  border-bottom:2px solid var(--main);
+  padding-bottom:6px;
+  color:var(--main);
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+h3{font-size:clamp(15.5px,1.9vw,18.5px);margin:14px 0 6px;color:var(--ink)}
+p,li{font-size:clamp(14px,1.65vw,16px)}
+.box{
+  border:1.5px dashed var(--line);
+  border-radius:16px;
+  padding:16px 18px;
+  background:var(--soft);
+  margin:12px 0;
+}
+.box-solid{
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:16px 18px;
+  background:var(--soft);
+  margin:12px 0;
+}
+.info-table,.data-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14.5px}
+.info-table th,.info-table td,.data-table th,.data-table td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:middle}
+.info-table th,.data-table th{background:var(--soft);color:var(--main);font-weight:700}
+.info-table th{width:20%}
+input[type="text"],select{
+  width:100%;
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--card);
+  color:var(--ink);
+  font:inherit;
+  font-size:14.5px;
+}
+textarea{
+  width:100%;
+  height:88px;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--card);
+  color:var(--ink);
+  font:inherit;
+  font-size:14.5px;
+  resize:vertical;
+}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:12px 0}
+.flow-step-card{
+  background:var(--card);
+  border:1.5px solid var(--line);
+  border-radius:14px;
+  padding:14px;
+}
+.flow-step-card h4{margin:0 0 8px;color:var(--main);font-size:15.5px}
+.check-row{
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  margin:8px 0;
+  font-size:14.5px;
+  cursor:pointer;
+}
+.check-row input[type="checkbox"]{
+  width:18px;
+  height:18px;
+  margin-top:3px;
+  accent-color:var(--main);
+  flex-shrink:0;
+}
+.quiz-item{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 16px;
+  margin:10px 0;
+}
+.quiz-opts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.q-btn{
+  padding:6px 14px;
+  border-radius:999px;
+  border:1.5px solid var(--line);
+  background:var(--soft);
+  color:var(--ink);
+  font-weight:700;
+  font-size:13.5px;
+  cursor:pointer;
+}
+.q-btn:hover{border-color:var(--main);color:var(--main)}
+.q-btn.picked{background:var(--main);color:#fff;border-color:var(--main)}
+.feedback{margin-top:8px;font-size:13.5px;font-weight:700}
+.btn-row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:24px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:10px 18px;
+  border-radius:999px;
+  border:none;
+  background:var(--main);
+  color:#fff;
+  font:inherit;
+  font-size:14.5px;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration:none;
+}
+.btn:hover{background:var(--bf-main-dark)}
+.btn-sub{
+  background:var(--soft);
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+.btn-sub:hover{background:var(--line)}
+.save-status{
+  text-align:center;
+  font-size:13px;
+  color:var(--sub);
+  margin-top:6px;
+}
+@media print{
+  body{background:#fff;color:#000}
+  .no-print,.bf-topbar,.bf-footer{display:none!important}
+  .worksheet-wrap{margin:0;padding:0;max-width:100%}
+  .sheet{border:none;box-shadow:none;padding:0}
+}
+</style>
+</head>
+<body>
+
+<nav class="bf-topbar no-print" aria-label="전역 상단 네비게이션">
+  <div class="bf-topbar-inner">
+    <a class="bf-brand" href="../../index.html">
+      <span class="bf-brand-logo" aria-hidden="true">🌸</span>
+      <span class="bf-brand-text">
+        <span class="bf-brand-title">Beflower의 과학 시뮬레이션 랩</span>
+        <span class="bf-brand-sub">프로그램 수업 · 학생용 탐구 활동지</span>
+      </span>
+    </a>
+    <div class="bf-nav">
+      <a href="../../index.html">🏠 홈</a>
+      <a href="../../index.html#sims">🧪 시뮬레이션</a>
+      <a class="active" href="../../index.html#coding">💻 프로그램 수업</a>
+      <a href="../../index.html#games">🎮 게임</a>
+    </div>
+    <div class="bf-topbar-actions">
+      <a class="bf-btn bf-btn-sm" href="index.html" style="background:var(--main);color:#fff;border:none;border-radius:999px;padding:6px 12px;font-weight:700;text-decoration:none">📊 수업 자료</a>
+      <button id="themeToggle" type="button" aria-label="다크/라이트 모드 전환" style="background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px 10px;cursor:pointer"><span id="themeIcon">🌙</span></button>
+    </div>
+  </div>
+</nav>
+
+<main class="worksheet-wrap">
+  <article class="sheet">
+    <header class="sheet-header">
+      <div class="badge-row">
+        <span class="badge">💻 중학교 프로그램 수업</span>
+        <span class="badge">아키텍처 &amp; GitHub 인증</span>
+        <span class="badge">자동 저장 지원</span>
+      </div>
+      <h1>AI 바이브 코딩 아키텍처 &amp; GitHub 인증 활동지 🔐</h1>
+      <p style="margin:6px 0 0;color:var(--sub)">웹 LLM과 로컬 VS Code의 파일 이동 경로를 비교하고, GitHub 3단계 인증의 원리를 내 말로 정리해 봅시다.</p>
+    </header>
+
+    <table class="info-table">
+      <tr>
+        <th>학년 / 반 / 번호</th>
+        <td><input type="text" data-field="student_id" placeholder="예: 1학년 3반 12번"></td>
+        <th>이름</th>
+        <td><input type="text" data-field="student_name" placeholder="이름 입력"></td>
+      </tr>
+      <tr>
+        <th>오늘의 목표</th>
+        <td colspan="3"><input type="text" data-field="goal" placeholder="예: 브라우저 로그인과 gh CLI 인증이 왜 다른지 설명할 수 있다!"></td>
+      </tr>
+    </table>
+    <div class="save-status no-print" id="saveStatus">💾 입력한 내용은 이 브라우저에 자동 저장됩니다.</div>
+
+    <h2>1. 파일 이동 경로 비교하기 (웹 LLM vs 로컬 VS Code) 🗺️</h2>
+    <p>같은 웹페이지를 수정할 때, 두 방식에서 파일이 어떻게 움직이는지 표를 채워 비교해 보세요.</p>
+    <table class="data-table">
+      <tr>
+        <th style="width:24%">비교 항목</th>
+        <th style="width:38%">🌐 웹 LLM 방식 (ChatGPT 웹)</th>
+        <th style="width:38%">⚡ 로컬 PC (VS Code + Copilot)</th>
+      </tr>
+      <tr>
+        <td><strong>AI가 내 폴더를 직접 볼 수 있나요?</strong></td>
+        <td><input type="text" data-field="cmp_see_web" placeholder="예: 볼 수 없다 (웹에만 있음)"></td>
+        <td><input type="text" data-field="cmp_see_local" placeholder="예: 직접 읽고 수정할 수 있다"></td>
+      </tr>
+      <tr>
+        <td><strong>내 PC로 코드를 가져오는 방법</strong></td>
+        <td><input type="text" data-field="cmp_move_web" placeholder="예: 복사·붙여넣기 또는 다운로드"></td>
+        <td><input type="text" data-field="cmp_move_local" placeholder="예: 필요 없음 (내 폴더에 바로 저장)"></td>
+      </tr>
+      <tr>
+        <td><strong>GitHub에 올리는 방법</strong></td>
+        <td><input type="text" data-field="cmp_push_web" placeholder="예: 웹사이트에서 수동 업로드"></td>
+        <td><input type="text" data-field="cmp_push_local" placeholder="예: git push / gh CLI 명령"></td>
+      </tr>
+    </table>
+    <div class="box">
+      <label for="why_fast"><strong>Q1-1. 왜 로컬 VS Code + Copilot 방식이 웹 LLM 방식보다 수정·테스트가 훨씬 빠를까요? (택배/책상 비유를 떠올려 적어 보세요)</strong></label>
+      <textarea id="why_fast" data-field="why_fast" placeholder="내 생각을 자유롭게 적어 보세요..."></textarea>
+    </div>
+
+    <h2>2. GitHub 인증 3총사 개념 정리하기 🔑</h2>
+    <p>오늘 배운 3가지 인증 방식의 역할과 비유를 빈칸에 정리해 보세요.</p>
+    <table class="data-table">
+      <tr>
+        <th style="width:24%">인증 방식</th>
+        <th style="width:26%">어디서 사용하나요?</th>
+        <th>왜 필요한가요? (핵심 원리)</th>
+      </tr>
+      <tr>
+        <td><strong>1️⃣ GitHub 웹 로그인</strong></td>
+        <td><input type="text" data-field="auth_web_where" placeholder="예: 크롬·엣지 웹 브라우저"></td>
+        <td><input type="text" data-field="auth_web_why" placeholder="예: 내 계정에 들어가는 기본 신분증 (쿠키 팔찌)"></td>
+      </tr>
+      <tr>
+        <td><strong>2️⃣ 2단계 인증 (2FA)</strong></td>
+        <td><input type="text" data-field="auth_2fa_where" placeholder="예: 스마트폰 인증 앱"></td>
+        <td><input type="text" data-field="auth_2fa_why" placeholder="예: 비밀번호가 뚫려도 스마트폰으로 막는 이중 잠금"></td>
+      </tr>
+      <tr>
+        <td><strong>3️⃣ gh CLI 디바이스 인증</strong></td>
+        <td><input type="text" data-field="auth_cli_where" placeholder="예: VS Code 터미널"></td>
+        <td><input type="text" data-field="auth_cli_why" placeholder="예: 터미널에 출입증(토큰)을 안전하게 발급하기 위해"></td>
+      </tr>
+    </table>
+
+    <h2>3. gh CLI 디바이스 인증(Device Flow) 4단계 순서 맞추기 🪪</h2>
+    <p>터미널에서 <code>gh auth login</code>을 실행했을 때 일어나는 순서를 1번부터 4번까지 알맞게 골라 보세요.</p>
+    <div class="grid-2">
+      <div class="flow-step-card">
+        <h4>A. 내 PC에 안전한 암호 토큰(출입증)이 저장된다.</h4>
+        <select data-field="df_a" id="df_a">
+          <option value="">-- 순서 선택 --</option>
+          <option value="1">1단계</option>
+          <option value="2">2단계</option>
+          <option value="3">3단계</option>
+          <option value="4">4단계</option>
+        </select>
+      </div>
+      <div class="flow-step-card">
+        <h4>B. 터미널이 8자리 일회용 코드(예: A1B2-C3D4)를 발급받는다.</h4>
+        <select data-field="df_b" id="df_b">
+          <option value="">-- 순서 선택 --</option>
+          <option value="1">1단계</option>
+          <option value="2">2단계</option>
+          <option value="3">3단계</option>
+          <option value="4">4단계</option>
+        </select>
+      </div>
+      <div class="flow-step-card">
+        <h4>C. 브라우저에 8자리 코드를 입력하고 [Authorize]를 누른다.</h4>
+        <select data-field="df_c" id="df_c">
+          <option value="">-- 순서 선택 --</option>
+          <option value="1">1단계</option>
+          <option value="2">2단계</option>
+          <option value="3">3단계</option>
+          <option value="4">4단계</option>
+        </select>
+      </div>
+      <div class="flow-step-card">
+        <h4>D. 내 PC의 웹 브라우저가 GitHub 인증 페이지로 열린다.</h4>
+        <select data-field="df_d" id="df_d">
+          <option value="">-- 순서 선택 --</option>
+          <option value="1">1단계</option>
+          <option value="2">2단계</option>
+          <option value="3">3단계</option>
+          <option value="4">4단계</option>
+        </select>
+      </div>
+    </div>
+    <div class="no-print" style="margin-top:10px">
+      <button type="button" class="btn" id="checkOrderBtn" style="padding:8px 16px;font-size:13.5px">✅ 순서 채점하기</button>
+      <div class="feedback" id="orderFeedback"></div>
+    </div>
+
+    <h2>4. 개념 점검 미니 퀴즈 &amp; 실습 체크리스트 ⚡</h2>
+    <div class="quiz-item" data-quiz="q1" data-answer="X">
+      <strong>문제 1.</strong> 크롬 브라우저에서 GitHub 로그인을 했으므로, VS Code 터미널에서는 별도 인증 없이도 바로 <code>git push</code>가 된다.
+      <div class="quiz-opts">
+        <button type="button" class="q-btn" data-val="O">⭕ O</button>
+        <button type="button" class="q-btn" data-val="X">❌ X</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" data-quiz="q2" data-answer="O">
+      <strong>문제 2.</strong> 2FA(2단계 인증)는 '내가 아는 것(비밀번호)'과 '내가 가진 것(스마트폰)' 두 가지를 모두 확인해 계정을 지킨다.
+      <div class="quiz-opts">
+        <button type="button" class="q-btn" data-val="O">⭕ O</button>
+        <button type="button" class="q-btn" data-val="X">❌ X</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="quiz-item" data-quiz="q3" data-answer="O">
+      <strong>문제 3.</strong> <code>gh auth login</code>의 Device Flow 방식은 터미널에 비밀번호를 직접 치지 않고 브라우저에서 안전하게 승인하는 원리다.
+      <div class="quiz-opts">
+        <button type="button" class="q-btn" data-val="O">⭕ O</button>
+        <button type="button" class="q-btn" data-val="X">❌ X</button>
+      </div>
+      <div class="feedback"></div>
+    </div>
+
+    <div class="box-solid">
+      <h3 style="margin-top:0">✅ 오늘의 실습 점검 체크리스트</h3>
+      <label class="check-row"><input type="checkbox" data-check="chk1"> 웹 LLM 방식과 로컬 VS Code 방식의 파일 이동 경로 차이를 설명할 수 있다.</label>
+      <label class="check-row"><input type="checkbox" data-check="chk2"> 내 GitHub 계정에 웹 로그인과 2단계 인증(2FA)이 준비되어 있음을 확인했다.</label>
+      <label class="check-row"><input type="checkbox" data-check="chk3"> <code>gh auth login</code>(또는 <code>gh auth status</code>)으로 내 PC 터미널의 인증 상태를 확인했다.</label>
+      <label class="check-row"><input type="checkbox" data-check="chk4"> 공용 PC 사용 후에는 반드시 웹 로그아웃을 하기로 약속했다.</label>
+    </div>
+
+    <h2>5. 오늘 수업 소감 한 줄 ✍️</h2>
+    <textarea data-field="reflection" placeholder="오늘 새롭게 알게 된 점이나 가장 신기했던 원리를 한 줄로 적어 보세요!"></textarea>
+
+    <div class="btn-row no-print">
+      <button type="button" class="btn" onclick="window.print()">🖨️ 활동지 인쇄 / PDF 저장</button>
+      <button type="button" class="btn btn-sub" id="resetSheetBtn">🗑️ 작성 내용 초기화</button>
+      <a class="btn btn-sub" href="index.html">📊 수업 자료로 돌아가기</a>
+    </div>
+  </article>
+</main>
+
+<footer class="bf-footer no-print">
+  <div class="bf-footer-inner">
+    <div class="bf-footer-brand">
+      <span>🌸</span>
+      <span>Beflower의 과학 시뮬레이션 랩 · YangSeonghwa.github.io</span>
+    </div>
+    <div class="bf-footer-links">
+      <a href="../../index.html">홈으로</a>
+      <a href="../../index.html#sims">과학 시뮬레이션</a>
+      <a href="../../index.html#coding">프로그램 수업</a>
+      <a href="../../index.html#games">교육용 게임</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'bf-worksheet-github-concept-mastery-v1';
+  var saveStatus = document.getElementById('saveStatus');
+  var themeToggle = document.getElementById('themeToggle');
+  var themeIcon = document.getElementById('themeIcon');
+
+  function syncThemeIcon(){
+    var isDark = document.documentElement.classList.contains('bf-theme-dark');
+    if(themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
+  }
+  syncThemeIcon();
+
+  if(themeToggle){
+    themeToggle.addEventListener('click', function(){
+      var isDark = document.documentElement.classList.toggle('bf-theme-dark');
+      document.documentElement.classList.toggle('bf-theme-light', !isDark);
+      var theme = isDark ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-bf-theme', theme);
+      try{ localStorage.setItem('bf-theme', theme); }catch(e){}
+      syncThemeIcon();
+    });
+  }
+
+  function loadState(){
+    try{
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return;
+      var data = JSON.parse(raw);
+      document.querySelectorAll('[data-field]').forEach(function(el){
+        var k = el.getAttribute('data-field');
+        if(data[k] !== undefined) el.value = data[k];
+      });
+      document.querySelectorAll('[data-check]').forEach(function(el){
+        var k = el.getAttribute('data-check');
+        if(data[k] !== undefined) el.checked = Boolean(data[k]);
+      });
+    }catch(e){}
+  }
+
+  function saveState(){
+    try{
+      var data = {};
+      document.querySelectorAll('[data-field]').forEach(function(el){
+        data[el.getAttribute('data-field')] = el.value;
+      });
+      document.querySelectorAll('[data-check]').forEach(function(el){
+        data[el.getAttribute('data-check')] = el.checked;
+      });
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      if(saveStatus) saveStatus.textContent = '✅ 방금 작성한 내용이 자동 저장되었습니다.';
+    }catch(e){}
+  }
+
+  document.querySelectorAll('[data-field], [data-check]').forEach(function(el){
+    el.addEventListener('input', saveState);
+    el.addEventListener('change', saveState);
+  });
+
+  var checkOrderBtn = document.getElementById('checkOrderBtn');
+  if(checkOrderBtn){
+    checkOrderBtn.addEventListener('click', function(){
+      var a = document.getElementById('df_a').value;
+      var b = document.getElementById('df_b').value;
+      var c = document.getElementById('df_c').value;
+      var d = document.getElementById('df_d').value;
+      var fb = document.getElementById('orderFeedback');
+      if(!a || !b || !c || !d){
+        fb.style.color = '#f59e0b';
+        fb.textContent = '⚠️ A, B, C, D 네 항목의 순서를 모두 선택해 주세요!';
+        return;
+      }
+      if(b === '1' && d === '2' && c === '3' && a === '4'){
+        fb.style.color = '#10b981';
+        fb.textContent = '🎉 완벽합니다! (1. 8자리 코드 발급 → 2. 브라우저 열림 → 3. 코드 입력 및 승인 → 4. 토큰 저장 완료)';
+      } else {
+        fb.style.color = '#ef4444';
+        fb.textContent = '🤔 순서를 다시 한 번 생각해 볼까요? 먼저 터미널에서 코드를 받고(B), 브라우저가 열린 뒤(D), 승인(C)을 거쳐 토큰이 저장(A)됩니다!';
+      }
+    });
+  }
+
+  var quizExpl = {
+    q1: '브라우저(쿠키)와 터미널은 별개의 프로그램이라 로그인 정보를 공유하지 않아요. 터미널은 gh auth login으로 따로 토큰을 받아야 합니다!',
+    q2: '정답! 비밀번호(아는 것) + 스마트폰 인증(가진 것)의 조합이 바로 2FA의 핵심 원리입니다.',
+    q3: '정답! 8자리 일회용 코드와 브라우저 승인을 통해 터미널에 안전한 출입증(토큰)만 전달하는 것이 Device Flow예요.'
+  };
+
+  document.querySelectorAll('.quiz-item').forEach(function(item){
+    var key = item.getAttribute('data-quiz');
+    var ans = item.getAttribute('data-answer');
+    var fb = item.querySelector('.feedback');
+    item.querySelectorAll('.q-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        item.querySelectorAll('.q-btn').forEach(function(b){ b.classList.remove('picked'); });
+        btn.classList.add('picked');
+        var val = btn.getAttribute('data-val');
+        if(val === ans){
+          fb.style.color = '#10b981';
+          fb.textContent = '⭕ 정답! ' + quizExpl[key];
+        } else {
+          fb.style.color = '#ef4444';
+          fb.textContent = '❌ 아쉬워요! ' + quizExpl[key];
+        }
+      });
+    });
+  });
+
+  var resetBtn = document.getElementById('resetSheetBtn');
+  if(resetBtn){
+    resetBtn.addEventListener('click', function(){
+      if(!confirm('작성한 모든 내용을 지우고 처음부터 다시 쓸까요?')) return;
+      document.querySelectorAll('[data-field]').forEach(function(el){ el.value = ''; });
+      document.querySelectorAll('[data-check]').forEach(function(el){ el.checked = false; });
+      try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+      if(saveStatus) saveStatus.textContent = '🔄 작성 내용이 초기화되었습니다.';
+    });
+  }
+
+  loadState();
+})();
+</script>
+</body>
+</html>
