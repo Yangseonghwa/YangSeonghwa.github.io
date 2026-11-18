@@ -4,5 +4,11 @@
     "title": "수박 터뜨리기",
     "desc": "30초 동안 나타나는 수박을 빠르게 터뜨리고 최고 점수에 도전해 보세요!",
     "url": "games/whack-a-mole/index.html"
+  },
+  {
+    "icon": "🌞",
+    "title": "도은이의 포근한 기상 미션",
+    "desc": "30초 동안 머리를 살살 쓰다듬어 도은이를 다정하게 깨워 보세요!",
+    "url": "games/gentle-wakeup/index.html"
   }
 ]

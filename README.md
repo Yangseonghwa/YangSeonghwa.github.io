@@ -45,6 +45,10 @@ images/               # 이미지
 { "type": "발표 자료", "level": "공통", "title": "수업 제목", "desc": "한 줄 설명", "url": "programming/수업이름/index.html" }
 ```
 
+## 교육용 게임
+
+게임 페이지는 `games/<게임명>/index.html`에 추가하고 `games.json`에 아이콘, 제목, 설명, 페이지 URL을 등록하면 홈페이지 게임 놀이터에 표시됩니다. 현재 게임: [수박 터뜨리기](games/whack-a-mole/index.html), [도은이의 포근한 기상 미션](games/gentle-wakeup/index.html).
+
 ## 발표 페이지 사용법
 
 `programming/chatgpt-github-vibe/` 페이지: 방향키·스페이스·터치 스와이프로 넘기고, `F` 전체화면, `N` 교사 메모, 인쇄하면 모든 슬라이드가 출력됩니다.
