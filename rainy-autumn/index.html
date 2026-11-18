@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#252b29">
+  <title>비 오는 가을</title>
+  <style>
+    :root { --cream:#f4eee4; --muted:#d8cfc1; --gold:#d9a66b; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0; min-height:100vh; color:var(--cream);
+      font-family:"Noto Sans KR", "Malgun Gothic", sans-serif;
+      background:
+        linear-gradient(180deg, rgba(16,24,23,.35), rgba(17,23,22,.78)),
+        radial-gradient(ellipse at 72% 28%, rgba(174,105,53,.25), transparent 36%),
+        linear-gradient(135deg,#35433d 0%,#26342f 43%,#171f20 100%);
+      overflow-x:hidden;
+    }
+    .rain { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:1; }
+    .drop {
+      position:absolute; top:-12vh; width:1px; height:75px;
+      background:linear-gradient(transparent,rgba(220,231,226,.35));
+      animation:fall linear infinite;
+    }
+    @keyframes fall { to { transform:translate3d(-35px,115vh,0); } }
+    .scene {
+      position:fixed; inset:auto 0 0; height:42vh; z-index:0; pointer-events:none;
+      background:linear-gradient(0deg,rgba(10,16,16,.7),transparent);
+    }
+    .leaf {
+      position:absolute; bottom:-40px; font-size:22px; opacity:.65;
+      animation:drift 13s linear infinite;
+    }
+    @keyframes drift {
+      0% { transform:translate(0,0) rotate(0); opacity:0; }
+      12% { opacity:.7; }
+      100% { transform:translate(22vw,-110vh) rotate(540deg); opacity:0; }
+    }
+    header {
+      position:relative; z-index:2; display:flex; justify-content:space-between;
+      align-items:center; padding:28px 7vw;
+    }
+    .brand { letter-spacing:.18em; font-size:13px; color:#e8d4bd; }
+    nav { display:flex; gap:28px; }
+    nav a { color:#e8e0d6; text-decoration:none; font-size:13px; opacity:.8; }
+    nav a:hover { color:var(--gold); }
+    main { position:relative; z-index:2; }
+    .hero {
+      min-height:77vh; display:flex; flex-direction:column; justify-content:center;
+      align-items:center; text-align:center; padding:60px 22px 100px;
+    }
+    .eyebrow { color:#d9b58e; letter-spacing:.35em; font-size:12px; margin-bottom:25px; }
+    h1 {
+      font-family:"Georgia","Batang",serif; font-weight:400;
+      font-size:clamp(58px,10vw,120px); letter-spacing:.06em;
+      line-height:1.1; margin:0 0 24px; text-shadow:0 8px 35px #101715;
+    }
+    .subtitle { color:#e3d9cd; font-size:clamp(14px,2vw,18px); line-height:2; font-weight:300; }
+    .scroll { margin-top:65px; color:#c9b9a7; font-size:11px; letter-spacing:.25em; }
+    .scroll:after { content:""; display:block; height:42px; width:1px; margin:15px auto 0; background:#c9b9a7; opacity:.6; }
+    section.content {
+      max-width:1000px; margin:0 auto; padding:55px 24px 110px;
+      display:grid; grid-template-columns:1fr 1fr; gap:22px;
+    }
+    .card {
+      min-height:220px; padding:32px; border:1px solid rgba(240,224,203,.18);
+      background:rgba(20,29,27,.48); backdrop-filter:blur(9px);
+      box-shadow:0 18px 60px rgba(0,0,0,.12);
+    }
+    .card .icon { font-size:28px; margin-bottom:20px; }
+    .card h2 { font-family:Georgia,serif; font-weight:400; font-size:25px; margin:0 0 13px; color:#edcfaa; }
+    .card p { color:#d1cbc1; line-height:1.9; font-size:14px; margin:0; }
+    .quote { grid-column:1/-1; text-align:center; padding:50px 25px; }
+    .quote p { font-family:Georgia,"Batang",serif; font-size:clamp(20px,3vw,29px); color:#f0e3d2; }
+    footer { position:relative; z-index:2; text-align:center; padding:25px; color:#a9a69d; font-size:11px; letter-spacing:.12em; }
+    .sound {
+      position:fixed; z-index:5; right:24px; bottom:24px; border:1px solid #bca78d;
+      background:rgba(25,34,31,.8); color:#f2e5d4; padding:12px 17px;
+      border-radius:30px; cursor:pointer; font-size:12px; backdrop-filter:blur(8px);
+    }
+    .sound:hover { background:#735b45; }
+    @media(max-width:650px) {
+      header { padding:22px 6vw; } nav { gap:14px; }
+      nav a { font-size:11px; }
+      section.content { grid-template-columns:1fr; padding-top:25px; }
+      .quote { grid-column:auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="rain" id="rain"></div>
+  <div class="scene" aria-hidden="true"></div>
+  <header>
+    <div class="brand">AUTUMN · 11월의 기록</div>
+    <nav aria-label="주 메뉴">
+      <a href="#mood">가을의 순간</a>
+      <a href="#words">짧은 문장</a>
+    </nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="eyebrow">A QUIET AUTUMN DAY</div>
+      <h1>비 오는 가을</h1>
+      <div class="subtitle">젖은 낙엽 위로 계절이 천천히 내려앉고<br>빗소리는 마음속 작은 풍경이 됩니다.</div>
+      <div class="scroll">SCROLL TO FEEL</div>
+    </section>
+    <section class="content" id="mood">
+      <article class="card">
+        <div class="icon">🍂</div>
+        <h2>젖은 단풍길</h2>
+        <p>나뭇잎은 빗물에 반짝이고, 발걸음마다 가을의 색이 조용히 번집니다.</p>
+      </article>
+      <article class="card">
+        <div class="icon">☕</div>
+        <h2>따뜻한 한 잔</h2>
+        <p>창가에 앉아 따뜻한 차를 마셔요. 서두르지 않아도 괜찮은 오후입니다.</p>
+      </article>
+      <article class="card quote" id="words">
+        <p>“가을비는 떠나가는 계절이<br>잠시 남겨 놓은 다정한 인사.”</p>
+        <span class="eyebrow">SLOW DOWN · TAKE A BREATH</span>
+      </article>
+    </section>
+  </main>
+  <footer>비 오는 날, 잠시 머물다 가세요 · AUTUMN NOTES</footer>
+  <button class="sound" id="rainToggle" type="button" aria-pressed="false">♪ 빗소리 켜기</button>
+  <script>
+    const rain = document.getElementById('rain');
+    for (let i=0; i<95; i++) {
+      const d=document.createElement('i'); d.className='drop';
+      d.style.left=Math.random()*100+'%';
+      d.style.animationDuration=(.65+Math.random()*1.1)+'s';
+      d.style.animationDelay=(-Math.random()*3)+'s';
+      d.style.opacity=.2+Math.random()*.5;
+      rain.appendChild(d);
+    }
+    for (let i=0; i<12; i++) {
+      const leaf=document.createElement('span'); leaf.className='leaf';
+      leaf.textContent=['🍂','🍁'][i%2];
+      leaf.style.left=(Math.random()*100)+'%';
+      leaf.style.animationDelay=(-Math.random()*15)+'s';
+      leaf.style.animationDuration=(12+Math.random()*10)+'s';
+      document.body.appendChild(leaf);
+    }
+    // 브라우저 정책상 버튼을 누른 뒤에만 빗소리를 재생합니다.
+    let audioCtx, noiseSource, gain;
+    const toggle=document.getElementById('rainToggle');
+    toggle.addEventListener('click', async () => {
+      if (!audioCtx) {
+        audioCtx=new (window.AudioContext || window.webkitAudioContext)();
+        const buffer=audioCtx.createBuffer(1,audioCtx.sampleRate*3,audioCtx.sampleRate);
+        const data=buffer.getChannelData(0);
+        for(let i=0;i<data.length;i++) data[i]=(Math.random()*2-1)*0.22;
+        noiseSource=audioCtx.createBufferSource(); noiseSource.buffer=buffer; noiseSource.loop=true;
+        const filter=audioCtx.createBiquadFilter(); filter.type='lowpass'; filter.frequency.value=850;
+        gain=audioCtx.createGain(); gain.gain.value=0;
+        noiseSource.connect(filter); filter.connect(gain); gain.connect(audioCtx.destination);
+        noiseSource.start();
+      }
+      if(audioCtx.state==='suspended') await audioCtx.resume();
+      const on=toggle.getAttribute('aria-pressed')!=='true';
+      gain.gain.setTargetAtTime(on?0.16:0,audioCtx.currentTime,.25);
+      toggle.setAttribute('aria-pressed',String(on));
+      toggle.textContent=on?'♪ 빗소리 끄기':'♪ 빗소리 켜기';
+    });
+  </script>
+</body>
+</html>
