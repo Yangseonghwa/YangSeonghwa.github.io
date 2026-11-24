@@ -652,7 +652,11 @@ canvas.sim-canvas {
 <!-- 1. Top Header Navigation Bar -->
 <header class="top-header">
   <div class="brand">
-    <a class="home-link" href="../../index.html">🌸 홈으로</a>
+    <nav class="bf-nav" aria-label="주요 메뉴">
+      <a href="../../index.html">🏠 홈</a>
+      <a class="active" href="../../index.html#sims">🧪 시뮬레이션</a>
+      <a href="../../index.html#coding">💻 프로그램 수업</a>
+    </nav>
     <span class="brand-title">성간 물질, 성운과 성단 시뮬레이션</span>
     <span class="unit-badge">중2 과학 · 지구과학 (천문)</span>
   </div>
@@ -1138,7 +1142,18 @@ canvas.sim-canvas {
 </main>
 
 <footer class="bf-footer">
-  <div>🌸 Beflower의 과학 시뮬레이션 랩 · <a href="../../index.html">홈으로 돌아가기</a></div>
+  <div class="bf-footer-inner">
+    <div class="bf-footer-brand">
+      <span>🌸</span>
+      <span>Beflower의 과학 시뮬레이션 랩 · YangSeonghwa.github.io</span>
+    </div>
+    <div class="bf-footer-links">
+      <a href="../../index.html">홈으로</a>
+      <a href="../../index.html#sims">과학 시뮬레이션</a>
+      <a href="../../index.html#coding">프로그램 수업</a>
+      <a href="https://github.com/YangSeonghwa/YangSeonghwa.github.io" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
 </footer>
 
 <script>

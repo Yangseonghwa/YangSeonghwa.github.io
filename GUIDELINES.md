@@ -1,6 +1,6 @@
 # 🌸 Beflower의 과학 시뮬레이션 랩 — 디자인 및 개발 지침서 (GUIDELINES.md)
 
-이 문서는 **Beflower의 과학 시뮬레이션 랩 (`yangseonghwa.github.io`)** 프로젝트에 새로운 웹 페이지(과학 시뮬레이션, 수업 슬라이드, 탐구 활동지, 교육용 게임 등)를 추가하거나 기존 페이지를 수정할 때 **어떤 AI 에이전트나 개발자가 작업하더라도 일관된 브랜드 경험과 UI/UX를 유지**할 수 있도록 정의한 공식 디자인 시스템 및 개발 표준입니다.
+이 문서는 **Beflower의 과학 시뮬레이션 랩 (`yangseonghwa.github.io`)** 프로젝트에 새로운 웹 페이지(과학 시뮬레이션, 수업 슬라이드, 탐구 활동지 등)를 추가하거나 기존 페이지를 수정할 때 **어떤 AI 에이전트나 개발자가 작업하더라도 일관된 브랜드 경험과 UI/UX를 유지**할 수 있도록 정의한 공식 디자인 시스템 및 개발 표준입니다.
 
 ---
 
@@ -9,7 +9,7 @@
 1. **공통 스타일시트(`assets/css/beflower.css`) 필수 로드**
    - 모든 HTML 페이지는 `<head>` 내부에서 `assets/css/beflower.css`를 상대 경로로 반드시 불러와야 합니다.
    - 루트(`/`): `assets/css/beflower.css`
-   - 1단계 하위(`games/` 등): `../assets/css/beflower.css`
+   - 1단계 하위 폴더: `../assets/css/beflower.css`
    - 2단계 하위(`grade1/charles-law/`, `programming/chatgpt-github-vibe/` 등): `../../assets/css/beflower.css`
 2. **외부 빌드 도구 없는 순수 정적 웹(Vanilla HTML/CSS/JS)**
    - GitHub Pages에서 즉시 동작하도록 별도의 번들러 없이 **단일 HTML + 공통 CSS(`beflower.css`)** 구조를 유지합니다.
@@ -67,7 +67,7 @@
 
 ### 3.1 상단 글로벌 네비게이션 바 (`.bf-topbar`)
 
-`index.html`의 카테고리 섹션 앵커(`#sims`, `#coding`, `#games`)와 연결되는 4개의 표준 메뉴(`🏠 홈`, `🧪 시뮬레이션`, `💻 프로그램 수업`, `🎮 게임`)를 제공합니다. 현재 페이지의 성격에 맞는 메뉴 항목에 `class="active"`를 부여하세요.
+`index.html`의 카테고리 섹션 앵커(`#sims`, `#coding`)와 연결되는 3개의 표준 메뉴(`🏠 홈`, `🧪 시뮬레이션`, `💻 프로그램 수업`)를 제공합니다. 현재 페이지의 성격에 맞는 메뉴 항목에 `class="active"`를 부여하세요.
 
 ```html
 <!-- 기본 스크롤 페이지: class="bf-topbar" -->
@@ -87,7 +87,6 @@
       <a href="../../index.html">🏠 홈</a>
       <a class="active" href="../../index.html#sims">🧪 시뮬레이션</a>
       <a href="../../index.html#coding">💻 프로그램 수업</a>
-      <a href="../../index.html#games">🎮 게임</a>
     </nav>
 
     <!-- 선택 사항: 슬라이드 점프 셀렉트 박스, 인쇄 버튼, 교사용 해설 토글 등 -->
@@ -100,7 +99,7 @@
 
 ### 3.2 페이지 타이틀 배너 (`.bf-page-header`)
 
-스크롤형 시뮬레이션, 활동지, 게임 페이지 상단에 배치하는 표준 헤더 카드입니다.
+스크롤형 시뮬레이션과 활동지 페이지 상단에 배치하는 표준 헤더 카드입니다.
 
 ```html
 <section class="bf-page-header">
@@ -115,7 +114,7 @@
 
 ### 3.3 하단 공통 푸터 (`.bf-footer`)
 
-스크롤형 페이지(`index.html`, 시뮬레이션, 활동지, 게임 등)의 `</body>` 직전에 배치합니다.
+스크롤형 페이지(`index.html`, 시뮬레이션, 활동지 등)의 `</body>` 직전에 배치합니다.
 
 ```html
 <footer class="bf-footer">
@@ -128,7 +127,6 @@
       <a href="../../index.html">홈으로</a>
       <a href="../../index.html#sims">과학 시뮬레이션</a>
       <a href="../../index.html#coding">프로그램 수업</a>
-      <a href="../../index.html#games">교육용 게임</a>
       <a href="https://github.com/YangSeonghwa/YangSeonghwa.github.io" target="_blank" rel="noopener">GitHub</a>
     </div>
   </div>
@@ -143,14 +141,13 @@
 
 ## 4. 페이지 유형별 표준 템플릿 (`templates/`)
 
-새 페이지를 만들 때는 아래 4가지 표준 템플릿 중 목적에 맞는 파일을 복사하여 시작하세요.
+새 페이지를 만들 때는 아래 3가지 표준 템플릿 중 목적에 맞는 파일을 복사하여 시작하세요.
 
 | 페이지 유형 | 템플릿 경로 | 주요 용도 및 특징 |
 | :--- | :--- | :--- |
 | **과학 시뮬레이션** | `templates/simulation-template.html` | 좌측 시각화 캔버스 + 우측 조작 패널/측정 지표(2단 반응형 그리드) + 하단 원리/퀴즈 탭 |
 | **수업용 슬라이드 덱** | `templates/lesson-slides-template.html` | 전자칠판 수업용 16:9 슬라이드 쇼, 상단 고정 헤더(`.bf-topbar-fixed`), 하단 진행률 바(`.bf-slide-bar`), 교사용 노트(`N`키) |
 | **학생용 탐구 활동지** | `templates/worksheet-template.html` | 학번/이름 기입란, 탐구 데이터 표, 서술형 문항, 자동저장(`localStorage`) 및 A4 인쇄/PDF 최적화 |
-| **교육용 아케이드/게임** | `templates/game-template.html` | 점수판/타이머 HUD, 게임 보드, 난이도 선택 및 결과 모달 |
 
 ---
 
@@ -163,11 +160,10 @@
    - 중2 과학: `grade2/<topic-slug>/index.html`
    - 중3 과학: `grade3/<topic-slug>/index.html`
    - 프로그래밍/AI 수업: `programming/<topic-slug>/index.html` (부속 활동지는 `worksheet.html` 등)
-   - 게임: `games/<game-slug>/index.html`
 2. **디자인 시스템 적용 확인**
    - `<head>`에 `<link rel="stylesheet" href=".../assets/css/beflower.css">`가 정확한 상대 경로로 포함되었는가?
    - Pretendard 웹폰트 CDN 링크가 포함되었는가?
-   - 상단 `.bf-topbar`의 브랜드 링크와 4개 메뉴(`홈`, `시뮬레이션`, `프로그램 수업`, `게임`)의 상대 경로가 정확한가?
+   - 상단 `.bf-topbar`의 브랜드 링크와 3개 메뉴(`홈`, `시뮬레이션`, `프로그램 수업`)의 상대 경로가 정확한가?
 3. **메인 포털(`index.html`) 및 문서 업데이트**
    - `index.html`의 해당 카테고리 그리드에 새 페이지로 이동하는 `.sim-card` 카드를 추가했는가?
    - `PROJECT.md` 및 `README.md`의 콘텐츠 목록에 새 페이지 정보를 반영했는가?

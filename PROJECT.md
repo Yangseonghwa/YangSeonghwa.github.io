@@ -5,15 +5,15 @@ Beflower(중학교 과학 교사)의 GitHub Pages 홈페이지. 학년별 과학
 
 ## 현재 상태
 - 진행도: 운영 중 (https://yangseonghwa.github.io/)
-- 마지막 갱신: 2026-11-19 by claude
+- 마지막 갱신: 2026-11-24 by claude
 - 지금 되는 것:
   - **Beflower 공통 디자인 시스템 v2.0(`assets/css/beflower.css`) 및 메인 포털·서브페이지 전면 개편 완료**:
     - 라이트/다크 모드 양방향 테마 시스템(`html.bf-theme-dark`, `prefers-color-scheme: dark`, `localStorage` 영속성 및 원클릭 토글 버튼 `.bf-theme-toggle`)
     - Pretendard Variable 기반 모던 타이포그래피, 유동적 `clamp()` 스케일, 한글 `word-break: keep-all` 가독성 최적화
     - 반응형 벤토 그리드(학년별 탐색 카드, 시뮬레이션 허브, 프로그램 수업, 교사 소개), 학년×영역 복합 필터 및 실시간 키워드 검색(`#simSearch`)
     - 플로팅 글래스모피즘 네비게이션, 앰비언트 오브 히어로, `IntersectionObserver` 스크롤 리빌(`.bf-reveal`) 및 스프링 호버 애니메이션(`prefers-reduced-motion` 접근성 준수)
-  - **제작 지침서(`GUIDELINES.md`), 표준 템플릿 4종(`templates/`)** 구축 및 전 페이지 디자인/네비게이션/폰트/컬러 팔레트 통일 완료
-  - 과학 시뮬레이션 목록(sims.json, 중1·중2), 프로그램 수업 목록(lessons.json), 프로그램 수업 발표 페이지(15장), 학생용 인쇄 활동지(worksheet.html), 중학교 2학년 「별의 밝기와 등급」 발표 자료 및 역제곱 법칙 시뮬레이션(`grade2/star-brightness/`), 중학교 2학년 「천체의 색깔과 별까지의 거리 판별」 발표 자료 및 인터랙티브 시뮬레이션(`grade2/star-color-distance/`), 중학교 2학년 「우리은하의 구조와 크기」 발표 자료 및 인터랙티브 시뮬레이션(`grade2/milky-way/`), 중학교 2학년 「성간 물질, 성운과 성단」 발표 자료 및 인터랙티브 시뮬레이션(`grade2/nebula-cluster/`), 게임 탭(games.json, 수박 터뜨리기·도은이의 포근한 기상 미션), 「비 오는 가을」 랜딩 페이지(`rainy-autumn/`), 중학교 1학년 「태양계 구성 천체 탐구」 발표 자료 및 인터랙티브 궤도 시뮬레이션(`grade1/solar-system/`), 중학교 2학년 5대 성운·성단 관측 활동(`grade2/deep-sky-observation/`, 관측 링크는 Stellarium Web·Aladin Lite), 프로그램 수업 「AI 바이브 코딩 구조와 인증 마스터 클래스」 발표 자료·학생 활동지(`programming/github-concept-mastery/`)
+  - **제작 지침서(`GUIDELINES.md`), 표준 템플릿 3종(`templates/`)** 구축 및 전 페이지 디자인/네비게이션/폰트/컬러 팔레트 통일 완료
+  - 과학 시뮬레이션 목록(sims.json, 중1·중2), 프로그램 수업 목록(lessons.json), 프로그램 수업 발표 페이지(15장), 학생용 인쇄 활동지(worksheet.html), 중학교 2학년 「별의 밝기와 등급」 발표 자료 및 역제곱 법칙 시뮬레이션(`grade2/star-brightness/`), 중학교 2학년 「천체의 색깔과 별까지의 거리 판별」 발표 자료 및 인터랙티브 시뮬레이션(`grade2/star-color-distance/`), 중학교 2학년 「우리은하의 구조와 크기」 발표 자료 및 인터랙티브 시뮬레이션(`grade2/milky-way/`), 중학교 2학년 「성간 물질, 성운과 성단」 발표 자료 및 인터랙티브 시뮬레이션(`grade2/nebula-cluster/`), 「비 오는 가을」 랜딩 페이지(`rainy-autumn/`), 중학교 1학년 「태양계 구성 천체 탐구」 발표 자료 및 인터랙티브 궤도 시뮬레이션(`grade1/solar-system/`), 중학교 2학년 5대 성운·성단 관측 활동(`grade2/deep-sky-observation/`, 관측 링크는 Stellarium Web·Aladin Lite), 프로그램 수업 「AI 바이브 코딩 구조와 인증 마스터 클래스」 발표 자료·학생 활동지(`programming/github-concept-mastery/`)
 - 아직 안 되는 것: 중학교 3학년 시뮬레이션, 바이브 코딩 수업의 실제 학생별 배포 실습 검증
 - 저장소: 이 프로젝트는 전용 GitHub 저장소(`Yangseonghwa/YangSeonghwa.github.io`, **public**)를 가진다 (D-007). 서버의 `projects/yangseonghwa.github.io/`가 그 저장소의 작업 폴더이다. 공개 저장소이고 푸시하면 Pages가 곧바로 공개하므로 개인정보·비밀·학생 정보를 절대 넣지 않는다.
 
@@ -76,6 +76,7 @@ projects/yangseonghwa.github.io/
 - [ ] 실제 수업 전 ChatGPT의 GitHub 연결 화면을 확인하고 발표 자료의 메뉴 이름·스크린샷 보강
 
 ## 알려진 문제 / 주의사항
+- 전 페이지 상단 메뉴는 `🏠 홈 / 🧪 시뮬레이션 / 💻 프로그램 수업` 3개로 통일했고(게임 탭·`games/`는 제거), 스크롤형 페이지 푸터는 GUIDELINES 3.3 형식이다(홈 `index.html`의 푸터만 템플릿 링크·연도 스크립트 때문에 별도). 탭형 3개 페이지(`grade1/solar-system`, `grade2/deep-sky-observation`, `grade2/nebula-cluster`)는 자체 `.top-header`에 표준 메뉴만 넣었고 `.bf-topbar` 브랜드 바로의 완전 전환은 아직 안 했다. `rainy-autumn/`은 공통 CSS를 쓰지 않는 독립 랜딩 페이지다.
 - `index.html`을 파일로 직접 열면(file://) 브라우저가 sims.json·lessons.json 불러오기를 막을 수 있다. 미리보기는 간단한 웹 서버(`python3 -m http.server`)로 한다.
 - 이 저장소는 public이다. 시뮬레이션이나 수업 자료에 학생 개인정보·비밀번호·API 키를 넣지 말 것.
 - 발표 자료는 2차시 90분 운영표와 학생 활동지를 포함한다.
