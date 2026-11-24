@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SDGs 프로그램 프로젝트: 우리가 만드는 지속가능한 세상 | 수업 발표 자료 · Beflower</title>
+<meta name="description" content="지속가능발전목표(SDGs)를 실천하는 서비스·캠페인·게임 프로그램을 기획하고 만드는 중학생 대상 프로젝트 수업 발표 자료">
+<link rel="stylesheet" href="../../assets/css/beflower.css">
+<style>
+  html, body { height: 100%; margin: 0; }
+  body { font-family: var(--bf-font-sans); background: linear-gradient(135deg, var(--bf-navy), var(--bf-main) 70%); color: var(--bf-ink); overflow: hidden; }
+  .deck { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; padding: 68px 18px 70px; }
+  .slide { display: none; width: min(1100px, 100%); max-height: 100%; overflow-y: auto; background: var(--bf-surface); border-radius: 24px; padding: clamp(20px, 4vw, 44px); box-shadow: var(--bf-shadow-lg); animation: slideFade .32s ease; font-size: clamp(16px, 2vw, 20px); line-height: 1.6; }
+  .slide.on { display: block; }
+  @keyframes slideFade { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .kicker { display: inline-block; padding: 4px 14px; border-radius: var(--bf-radius-pill); background: var(--bf-surface-soft); border: 1px solid var(--bf-line); color: var(--bf-main); font-weight: 700; font-size: 14px; }
+  h1 { font-size: clamp(28px, 5vw, 48px); margin: 12px 0 10px; line-height: 1.25; letter-spacing: -.5px; }
+  h2 { font-size: clamp(22px, 3.5vw, 34px); margin: 10px 0 14px; color: var(--bf-main); }
+  p { margin: 6px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 14px; }
+  .box { border: 1px solid var(--bf-line); border-radius: 16px; padding: 14px 18px; background: var(--bf-surface-soft); }
+  .box h3 { margin: 0 0 6px; font-size: 1.1em; }
+  .box p { color: var(--bf-sub); font-size: .92em; }
+  .big { font-size: 1.15em; font-weight: 700; }
+  .hl { background: var(--bf-main-soft); border-left: 6px solid var(--bf-main); border-radius: 10px; padding: 12px 16px; margin-top: 14px; }
+  .chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; margin-top: 12px; }
+  .chip { display: flex; gap: 8px; align-items: center; padding: 8px 12px; border-radius: 12px; background: var(--bf-main-soft); border: 1px solid var(--bf-line); font-size: .85em; font-weight: 600; }
+  .chip b { min-width: 26px; height: 26px; border-radius: 50%; background: var(--bf-main); color: #fff; display: grid; place-items: center; font-size: .8em; }
+  ol.steps { list-style: none; counter-reset: s; padding: 0; margin: 12px 0 0; display: grid; gap: 10px; }
+  ol.steps li { counter-increment: s; display: flex; gap: 12px; align-items: flex-start; padding: 10px 14px; border: 1px solid var(--bf-line); border-radius: 14px; background: var(--bf-surface-soft); }
+  ol.steps li::before { content: counter(s); flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--bf-main); color: #fff; display: grid; place-items: center; font-weight: 800; }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: .9em; }
+  th, td { border: 1px solid var(--bf-line); padding: 8px 10px; text-align: left; }
+  th { background: var(--bf-main-soft); }
+  select { font: inherit; padding: 8px 10px; border-radius: 10px; border: 1px solid var(--bf-line); background: var(--bf-surface); color: var(--bf-ink); max-width: 100%; }
+  .gen label { display: block; font-weight: 700; margin-top: 10px; }
+  #genOut { margin-top: 14px; font-size: 1.1em; font-weight: 700; }
+  code.prompt { display: block; white-space: pre-wrap; background: var(--bf-surface-soft); border: 1px solid var(--bf-line); border-radius: 12px; padding: 12px 14px; font-family: var(--bf-font-mono); font-size: .8em; margin-top: 10px; }
+  .note { display: none; margin-top: 16px; padding: 12px 16px; border-radius: 12px; background: #fffbe6; border: 1px dashed #e0c36a; color: #5c4813; font-size: 15px; }
+  body.notes .note { display: block; }
+  @media print {
+    body { overflow: visible; background: #fff; }
+    .deck { display: block; padding: 0; height: auto; }
+    .slide { display: block !important; box-shadow: none; border: 1px solid #ccc; page-break-after: always; max-height: none; margin-bottom: 18px; }
+    .note { display: block !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="bf-topbar bf-topbar-fixed bf-topbar-dark" aria-label="전역 상단 네비게이션">
+  <div class="bf-topbar-inner">
+    <a class="bf-brand" href="../../index.html">
+      <span class="bf-brand-logo" aria-hidden="true">🌸</span>
+      <span class="bf-brand-text">
+        <span class="bf-brand-title">Beflower의 과학 시뮬레이션 랩</span>
+        <span class="bf-brand-sub">프로그램 수업 · SDGs 프로그램 프로젝트</span>
+      </span>
+    </a>
+    <div class="bf-nav">
+      <a href="../../index.html">🏠 홈</a>
+      <a href="../../index.html#sims">🧪 시뮬레이션</a>
+      <a class="active" href="../../index.html#coding">💻 프로그램 수업</a>
+    </div>
+  </div>
+</nav>
+
+<div class="deck">
+
+  <section class="slide on" data-title="1. 표지">
+    <span class="kicker">🌍 프로그램 수업 · 프로젝트</span>
+    <h1>우리의 프로그램으로<br>세상을 조금 더 좋게!</h1>
+    <p class="big">지속가능발전목표(SDGs)를 실천하는 서비스 · 캠페인 · 게임 만들기</p>
+    <div class="grid">
+      <div class="box"><h3>🎯 최종 목표</h3><p>SDGs 한 가지를 골라, 내가 만든 프로그램 페이지로 실천하기</p></div>
+      <div class="box"><h3>🧑‍🎓 대상</h3><p>중학생 · 모둠 활동 가능</p></div>
+      <div class="box"><h3>⌨️ 조작</h3><p>← → 이동 · F 전체화면</p></div>
+    </div>
+    <div class="note">[교사 메모] 도입 질문: "우리 학교에서 가장 불편하거나 아까운 것은 무엇인가요?" 답을 칠판에 적어 두고 5번 슬라이드에서 다시 사용하세요.</div>
+  </section>
+
+  <section class="slide" data-title="2. 오늘의 미션">
+    <span class="kicker">오늘의 미션</span>
+    <h2>이 수업이 끝나면 할 수 있는 일</h2>
+    <ol class="steps">
+      <li><span><b>SDGs가 무엇인지</b> 내 말로 설명할 수 있다.</span></li>
+      <li><span>우리 주변 문제를 찾고 <b>알맞은 SDG와 연결</b>할 수 있다.</span></li>
+      <li><span>서비스·캠페인·게임 중 <b>내 프로그램 유형</b>을 고를 수 있다.</span></li>
+      <li><span><b>아이디어 카드</b>를 완성하고 AI에게 만들어 달라고 말할 수 있다.</span></li>
+    </ol>
+    <div class="note">[교사 메모] 4번이 오늘의 결과물입니다. 실제 제작은 다음 차시에 바이브 코딩 수업과 연결합니다.</div>
+  </section>
+
+  <section class="slide" data-title="3. SDGs란?">
+    <span class="kicker">개념 알기</span>
+    <h2>SDGs, 한 줄로 말하면?</h2>
+    <p class="big">"2030년까지 모두가 함께 잘 사는 지구를 만들자"는 전 세계의 약속</p>
+    <div class="grid">
+      <div class="box"><h3>📅 언제?</h3><p>2015년 유엔(UN)에서 채택, 2030년까지 달성 목표</p></div>
+      <div class="box"><h3>🔢 무엇?</h3><p>17개의 큰 목표와 세부 목표</p></div>
+      <div class="box"><h3>🤝 누가?</h3><p>정부, 기업, 학교, 그리고 우리 모두</p></div>
+    </div>
+    <div class="hl">핵심 약속: <b>"아무도 뒤에 남겨두지 않기"</b></div>
+    <div class="note">[교사 메모] SDGs = Sustainable Development Goals(지속가능발전목표). '지속가능'은 지금 세대와 다음 세대가 모두 누릴 수 있다는 뜻으로 설명하세요.</div>
+  </section>
+
+  <section class="slide" data-title="4. 17개 목표">
+    <span class="kicker">17개 목표 한눈에</span>
+    <h2>내 마음이 가장 끌리는 목표는?</h2>
+    <div class="chips" id="sdgChips"></div>
+    <div class="note">[교사 메모] 스티커나 손들기로 가장 끌리는 목표 1~2개를 고르게 하세요. 한 번에 다 설명하지 않아도 됩니다.</div>
+  </section>
+
+  <section class="slide" data-title="5. 우리 주변 문제">
+    <span class="kicker">문제 찾기</span>
+    <h2>SDGs는 멀리 있지 않아요</h2>
+    <table>
+      <tr><th>우리 주변 모습</th><th>연결되는 SDG</th></tr>
+      <tr><td>🍚 급식 잔반이 많이 버려져요</td><td>12 책임 있는 소비와 생산</td></tr>
+      <tr><td>💡 빈 교실에 불이 켜져 있어요</td><td>7 깨끗한 에너지 · 13 기후 변화 대응</td></tr>
+      <tr><td>💬 친구를 놀리는 말이 오가요</td><td>16 평화·정의·효과적인 제도</td></tr>
+      <tr><td>👵 혼자 사시는 어르신이 외로워요</td><td>3 건강과 웰빙 · 11 지속가능한 도시와 공동체</td></tr>
+      <tr><td>🌊 바다에 플라스틱이 늘어요</td><td>14 해양 생태계 보호</td></tr>
+    </table>
+    <div class="hl">내가 "어? 이거 문제인데?" 하고 느낀 순간이 프로그램의 시작이에요.</div>
+    <div class="note">[교사 메모] 1번 슬라이드에서 나온 학생 답을 이 표에 한 줄 추가해 연결해 보세요.</div>
+  </section>
+
+  <section class="slide" data-title="6. 프로그램 3유형">
+    <span class="kicker">만들 수 있는 것</span>
+    <h2>프로그램은 세 가지 방법으로 만들 수 있어요</h2>
+    <div class="grid">
+      <div class="box"><h3>🛠 서비스</h3><p>문제를 직접 도와주는 도구. 예: 잔반 기록장, 에너지 절약 계산기</p></div>
+      <div class="box"><h3>📣 캠페인</h3><p>마음과 행동을 바꾸는 이야기. 예: 포스터 페이지, 7일 챌린지</p></div>
+      <div class="box"><h3>🎮 게임</h3><p>재미로 배우고 실천. 예: 분리배출 퀴즈, 바다 지키기 게임</p></div>
+    </div>
+    <div class="hl">셋 중 무엇이든 괜찮아요. 중요한 것은 <b>누구의 어떤 문제를 돕는지</b>예요.</div>
+    <div class="note">[교사 메모] 게임을 고르면 '재미만 있고 SDG가 없는' 경우가 많습니다. 게임 안에서 실천 행동을 배우는지 꼭 물어보세요.</div>
+  </section>
+
+  <section class="slide" data-title="7. 좋은 프로그램">
+    <span class="kicker">기준 세우기</span>
+    <h2>좋은 SDGs 프로그램의 4가지 조건</h2>
+    <div class="grid">
+      <div class="box"><h3>1️⃣ 누구를 위해?</h3><p>도움받는 사람이 분명해요.</p></div>
+      <div class="box"><h3>2️⃣ 무슨 문제?</h3><p>하나의 문제에 집중해요.</p></div>
+      <div class="box"><h3>3️⃣ 어떻게 해결?</h3><p>사용자가 할 행동이 쉬워요.</p></div>
+      <div class="box"><h3>4️⃣ 어떻게 알릴까?</h3><p>친구들이 보고 싶어지는 페이지예요.</p></div>
+    </div>
+    <div class="hl">욕심내지 말고 <b>작게 시작</b>해요. 작지만 끝까지 완성한 프로그램이 최고!</div>
+  </section>
+
+  <section class="slide" data-title="8. 5단계 기획">
+    <span class="kicker">진행 순서</span>
+    <h2>프로젝트 5단계</h2>
+    <ol class="steps">
+      <li><span><b>문제 발견</b> · 우리 주변에서 불편한 점 찾기</span></li>
+      <li><span><b>목표 선택</b> · 17개 중 연결되는 SDG 고르기</span></li>
+      <li><span><b>아이디어</b> · 서비스·캠페인·게임 중 유형 정하기</span></li>
+      <li><span><b>만들기</b> · AI와 함께 프로그램 페이지 제작</span></li>
+      <li><span><b>공유·개선</b> · 친구에게 써 보게 하고 고치기</span></li>
+    </ol>
+    <div class="note">[교사 메모] 이번 차시는 1~3단계 중심, 4~5단계는 다음 차시입니다.</div>
+  </section>
+
+  <section class="slide" data-title="9. 아이디어 카드">
+    <span class="kicker">직접 해보기</span>
+    <h2>아이디어 문장 만들기</h2>
+    <div class="gen">
+      <label for="selP">① 어떤 문제?</label>
+      <select id="selP"></select>
+      <label for="selT">② 어떤 프로그램?</label>
+      <select id="selT">
+        <option>서비스</option><option>캠페인</option><option>게임</option>
+      </select>
+      <div id="genOut" class="hl"></div>
+    </div>
+    <p>이 문장을 활동지에 쓰고, <b>내 문제로 바꿔서</b> 완성해 보세요.</p>
+    <div class="note">[교사 메모] 예시는 출발점일 뿐입니다. 학생이 직접 찾은 문제로 바꿔 쓰도록 안내하세요.</div>
+  </section>
+
+  <section class="slide" data-title="10. AI와 만들기">
+    <span class="kicker">다음 단계 미리보기</span>
+    <h2>AI에게 이렇게 부탁해 보세요</h2>
+    <code class="prompt">나는 중학생이야.
+SDGs 12번(책임 있는 소비와 생산)을 실천하는
+'급식 잔반 줄이기 캠페인' 웹페이지를 만들어 줘.
+- 누구를 위해: 우리 학교 친구들
+- 꼭 들어갈 것: 제목, 잔반이 왜 문제인지 3줄, 오늘의 실천 체크리스트
+- 색깔: 초록 계열, 글씨는 크고 쉽게
+- HTML 한 파일로, 개인정보는 받지 않게</code>
+    <div class="hl">좋은 부탁 = <b>누구를 위해 + 무엇을 + 꼭 들어갈 것 + 분위기</b></div>
+    <div class="note">[교사 메모] 앞서 배운 ChatGPT·GitHub 바이브 코딩 수업과 연결됩니다. 프롬프트가 구체적일수록 결과가 좋아짐을 강조하세요.</div>
+  </section>
+
+  <section class="slide" data-title="11. 안전 점검">
+    <span class="kicker">공개 전 점검</span>
+    <h2>인터넷에 올리기 전 꼭 확인!</h2>
+    <div class="grid">
+      <div class="box"><h3>🔒 개인정보</h3><p>이름·학교·사진·연락처를 넣지 않았나요?</p></div>
+      <div class="box"><h3>📚 출처·저작권</h3><p>남의 그림이나 글을 허락 없이 쓰지 않았나요?</p></div>
+      <div class="box"><h3>✅ 사실 확인</h3><p>숫자와 설명이 맞는지 믿을 만한 곳에서 확인했나요?</p></div>
+      <div class="box"><h3>💚 존중</h3><p>누군가를 놀리거나 비난하는 표현은 없나요?</p></div>
+    </div>
+    <div class="note">[교사 메모] AI가 만든 숫자나 통계는 틀릴 수 있으므로 반드시 출처를 확인하게 하세요.</div>
+  </section>
+
+  <section class="slide" data-title="12. 평가 기준">
+    <span class="kicker">우리의 약속</span>
+    <h2>이렇게 평가해요</h2>
+    <table>
+      <tr><th>기준</th><th>이런 모습이면 최고!</th></tr>
+      <tr><td>문제 발견</td><td>우리 주변의 구체적인 문제를 골랐어요.</td></tr>
+      <tr><td>SDGs 연결</td><td>알맞은 목표와 이유를 설명할 수 있어요.</td></tr>
+      <tr><td>아이디어</td><td>사용자가 쉽게 실천할 수 있어요.</td></tr>
+      <tr><td>완성도</td><td>페이지가 열리고 읽기 편해요.</td></tr>
+      <tr><td>안전·존중</td><td>개인정보와 저작권을 지켰어요.</td></tr>
+    </table>
+  </section>
+
+  <section class="slide" data-title="13. 마무리">
+    <span class="kicker">정리</span>
+    <h2>오늘 기억할 3가지</h2>
+    <ol class="steps">
+      <li><span>SDGs는 <b>모두가 함께 잘 사는</b> 17개 약속이에요.</span></li>
+      <li><span>작은 문제도 <b>프로그램</b>으로 해결할 수 있어요.</span></li>
+      <li><span>다음 시간에는 <b>내 아이디어를 AI와 함께</b> 만들어요!</span></li>
+    </ol>
+    <div class="hl">🌱 숙제: 이번 주에 우리 주변에서 SDGs와 연결되는 문제 1개 더 찾아오기</div>
+  </section>
+
+</div>
+
+<div class="bf-slide-bar">
+  <a href="../../index.html">← 홈으로</a>
+  <button id="prevBtn" type="button">◀ 이전</button>
+  <div class="bf-slide-prog"><i id="progFill"></i></div>
+  <span id="slideCnt" style="min-width:64px;text-align:center;font-weight:800">1 / 13</span>
+  <button id="nextBtn" type="button">다음 ▶</button>
+  <button id="fsBtn" type="button">전체화면 (F)</button>
+  <button id="noteBtn" type="button">교사 메모 (N)</button>
+</div>
+
+<script>
+  var SDGS = ['빈곤 퇴치','기아 종식','건강과 웰빙','양질의 교육','성평등','깨끗한 물과 위생','깨끗한 에너지','양질의 일자리와 경제 성장','산업·혁신·사회기반시설','불평등 감소','지속가능한 도시와 공동체','책임 있는 소비와 생산','기후 변화 대응','해양 생태계 보호','육상 생태계 보호','평화·정의·효과적인 제도','목표를 위한 파트너십'];
+  var chips = document.getElementById('sdgChips');
+  SDGS.forEach(function (name, i) {
+    var d = document.createElement('div');
+    d.className = 'chip';
+    var b = document.createElement('b');
+    b.textContent = i + 1;
+    var s = document.createElement('span');
+    s.textContent = name;
+    d.appendChild(b); d.appendChild(s);
+    chips.appendChild(d);
+  });
+
+  var PROBLEMS = [
+    ['급식 잔반이 너무 많이 버려지는', 12],
+    ['빈 교실에 전기와 물이 낭비되는', 7],
+    ['친구를 놀리는 말과 사이버폭력이 있는', 16],
+    ['혼자 사시는 동네 어르신이 외로운', 3],
+    ['바다에 플라스틱 쓰레기가 늘어나는', 14],
+    ['학교에 가기 어려운 다른 나라 친구들이 있는', 4]
+  ];
+  var selP = document.getElementById('selP'), selT = document.getElementById('selT'), out = document.getElementById('genOut');
+  PROBLEMS.forEach(function (p, i) {
+    var o = document.createElement('option');
+    o.value = i; o.textContent = p[0] + ' 문제';
+    selP.appendChild(o);
+  });
+  function gen() {
+    var p = PROBLEMS[selP.value];
+    out.textContent = '"' + p[0] + ' 문제를 해결하려고, ' + selT.value + ' 프로그램을 만들어 SDG ' + p[1] + '번 「' + SDGS[p[1] - 1] + '」을 실천합니다."';
+  }
+  selP.onchange = gen; selT.onchange = gen; gen();
+
+  var slides = Array.from(document.querySelectorAll('.slide'));
+  var cur = 0;
+  function show(n) {
+    cur = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach(function (s, i) { s.classList.toggle('on', i === cur); });
+    document.getElementById('slideCnt').textContent = (cur + 1) + ' / ' + slides.length;
+    document.getElementById('progFill').style.width = ((cur + 1) / slides.length * 100) + '%';
+  }
+  document.getElementById('prevBtn').onclick = function () { show(cur - 1); };
+  document.getElementById('nextBtn').onclick = function () { show(cur + 1); };
+  document.getElementById('noteBtn').onclick = function () { document.body.classList.toggle('notes'); };
+  document.getElementById('fsBtn').onclick = function () {
+    if (document.fullscreenElement) document.exitFullscreen();
+    else if (document.documentElement.requestFullscreen) document.documentElement.requestFullscreen();
+  };
+  document.addEventListener('keydown', function (e) {
+    if (['INPUT', 'SELECT', 'TEXTAREA'].indexOf(e.target.tagName) >= 0) return;
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(cur - 1); }
+    else if (e.key === 'f' || e.key === 'F') document.getElementById('fsBtn').click();
+    else if (e.key === 'n' || e.key === 'N') document.body.classList.toggle('notes');
+  });
+  var tx = null;
+  document.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null || ['SELECT', 'INPUT'].indexOf(e.target.tagName) >= 0) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if (Math.abs(dx) > 60) show(cur + (dx < 0 ? 1 : -1));
+    tx = null;
+  }, { passive: true });
+  show(0);
+</script>
+</body>
+</html>

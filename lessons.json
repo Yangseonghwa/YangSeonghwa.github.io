@@ -2,6 +2,13 @@
   {
     "type": "발표 자료",
     "level": "중학교 1학년",
+    "title": "SDGs 프로그램 프로젝트: 우리가 만드는 지속가능한 세상",
+    "desc": "지속가능발전목표(SDGs)를 서비스·캠페인·게임으로 실천하는 프로그램 기획 수업 슬라이드(13장), 아이디어 문장 만들기 활동과 교사 메모 포함",
+    "url": "programming/sdgs-program-project/index.html"
+  },
+  {
+    "type": "발표 자료",
+    "level": "중학교 1학년",
     "title": "AI 바이브 코딩 구조와 인증 마스터 클래스",
     "desc": "웹 LLM vs 로컬 VS Code Copilot 파일 이동 경로와 GitHub 웹 로그인·2FA·gh CLI 디바이스 인증(Device Flow) 원리",
     "url": "programming/github-concept-mastery/index.html"
